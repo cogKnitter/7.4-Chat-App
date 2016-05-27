@@ -14,10 +14,12 @@ export default React.createClass({
     }
   },
   componentDidMount(){
-    $.get(this.props.source, (resp)=> {
-      this.setState({ messages: resp})
-      console.log(resp);
-    })
+    setInterval(()=> {
+      $.get(this.props.source, (resp)=> {
+        this.setState({ messages: resp})
+        console.log(resp);
+      })
+    }, 2000)
   },
   handleSubmitMessage(e){
     e.preventDefault();
@@ -38,8 +40,7 @@ export default React.createClass({
         $.get(this.props.source, (resp)=> {
           this.setState({ messages: resp})
         })
-      },
-      timeout: 2000
+      }
     })
   },
   render() {
@@ -53,7 +54,7 @@ export default React.createClass({
         </section>
         <section>
           <ul className="message__list">{this.state.messages.map((message)=> {
-              return <li key={ message._id } className="message__item" data-id={ message._id }>{message.chat}
+              return <li key={ message._id } className="message__item" data-id={ message._id }><h3>Username</h3><p className="message__text">{message.chat}</p>
                 <i onClick={this.handleChatDelete} className="fa fa-minus-square-o"></i>
                 </li>
             },this)}
