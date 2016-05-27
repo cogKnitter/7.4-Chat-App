@@ -97,6 +97,9 @@ body {
   border: 2px solid #aaaaaa;
   position: relative; }
 
+.message__entry:focus {
+  background-color: white; }
+
 .fa {
   margin: 0 1rem 1rem 2rem;
   position: absolute;
