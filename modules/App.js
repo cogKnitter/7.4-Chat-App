@@ -1,5 +1,6 @@
 import React from 'react'
 import $ from 'jquery'
+import ReactDOM from 'react-dom'
 import Serialize from 'form-serialize'
 
 export default React.createClass({
@@ -28,10 +29,11 @@ export default React.createClass({
       $.get(this.props.source, (resp)=> {
         this.setState({ messages: resp})
       })
+      this.refs.input.value= "";
     })
   },
   handleChatDelete(e){
-    var chatId = $(e.target).parent().data("id");
+    var chatId = ReactDOM.findDOMNode(e.target).parentNode.dataset.id;
     $.ajax({
       url: `${this.props.source}/${chatId}`,
       method: "DELETE",
@@ -49,7 +51,7 @@ export default React.createClass({
         <section>
           <h1 className="heading">Chat App</h1>
           <form className="message__form" method="POST" ref="chatForm" action="#" onSubmit={this.handleSubmitMessage}>
-            <input className="message__entry" type="text" name="chat" placeholder="type your message here"/>
+            <input className="message__entry" type="text" name="chat" ref="input" placeholder="type your message here"/>
           </form>
         </section>
         <section>
