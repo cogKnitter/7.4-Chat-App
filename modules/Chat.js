@@ -12,7 +12,6 @@ export default React.createClass({
   },
   getDefaultProps(){
     return {
-      usersSource: "http://tiny-tiny.herokuapp.com/collections/mariah_chat_users",
       source:"http://tiny-tiny.herokuapp.com/collections/mariah_chat"
     }
   },

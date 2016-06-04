@@ -1,5 +1,4 @@
 import React from 'react'
-import $ from 'jquery'
 import ReactDOM from 'react-dom'
 import Serialize from 'form-serialize'
 import Chat from './Chat'
