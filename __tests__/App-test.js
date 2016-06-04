@@ -1,5 +1,3 @@
-// __tests__/CheckboxWithLabel-test.js
-'use strict';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
@@ -17,6 +15,6 @@ describe('Boilerplate', () => {
     // find h1 on page
     var heading = TestUtils.findRenderedDOMComponentWithClass(appRendered, "heading");
     // assert it has text
-    expect(heading.textContent).toEqual("Hello!");
+    expect(heading.textContent).toEqual("Chat App");
   });
 });
