@@ -6,13 +6,20 @@ import Serialize from 'form-serialize'
 export default React.createClass({
   getInitialState(){
     return {
+      users: [],
       messages: []
     }
   },
   getDefaultProps(){
     return {
+      usersSource: "http://tiny-tiny.herokuapp.com/collections/mariah_chat_users",
       source:"http://tiny-tiny.herokuapp.com/collections/mariah_chat"
     }
+  },
+  getMessages(){
+    $.get(this.props.source, (resp)=> {
+      this.setState({ messages: resp})
+    })
   },
   componentDidMount(){
     setInterval(()=> {
@@ -26,9 +33,7 @@ export default React.createClass({
     e.preventDefault();
     var serializedForm = Serialize(this.refs.chatForm, {hash: true})
     $.post(this.props.source, serializedForm, (resp)=> {
-      $.get(this.props.source, (resp)=> {
-        this.setState({ messages: resp})
-      })
+      this.getMessages
       this.refs.input.value= "";
     })
   },
@@ -39,9 +44,7 @@ export default React.createClass({
       method: "DELETE",
       dataType: "JSON",
       success: (resp)=> {
-        $.get(this.props.source, (resp)=> {
-          this.setState({ messages: resp})
-        })
+        this.getMessages
       }
     })
   },
