@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 import App from '../modules/App';
 import Chat from '../modules/Chat';
+import $ from 'jquery';
+import Serialize from 'form-serialize';
 
 jest.unmock('../modules/App');
 jest.unmock('../modules/Chat');
