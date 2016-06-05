@@ -6,7 +6,6 @@ import Serialize from 'form-serialize'
 export default React.createClass({
   getInitialState(){
     return {
-      users: [],
       messages: []
     }
   },
@@ -24,7 +23,6 @@ export default React.createClass({
     setInterval(()=> {
       $.get(this.props.source, (resp)=> {
         this.setState({ messages: resp})
-        console.log(resp);
       })
     }, 2000)
   },
@@ -32,7 +30,7 @@ export default React.createClass({
     e.preventDefault();
     var serializedForm = Serialize(this.refs.chatForm, {hash: true})
     $.post(this.props.source, serializedForm, (resp)=> {
-      this.getMessages
+      this.getMessages,
       this.refs.input.value= "";
     })
   },

@@ -88,6 +88,11 @@ body {
   margin: 0 auto;
   margin-bottom: 1rem; }
 
+.message__text {
+  display: inline-block;
+  width: 90%;
+  margin-top: 0; }
+
 .message__entry {
   font-size: 1.4rem;
   width: 90%;
