@@ -105,7 +105,8 @@ body {
 .message__entry:focus {
   background-color: white; }
 
-.fa {
+.delete__chat {
+  font-size: 2rem;
   margin: 0 1rem 1rem 2rem;
   position: absolute;
   right: 17%; }

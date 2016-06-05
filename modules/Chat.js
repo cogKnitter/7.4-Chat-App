@@ -2,6 +2,8 @@ import React from 'react'
 import $ from 'jquery'
 import ReactDOM from 'react-dom'
 import Serialize from 'form-serialize'
+import Delete from './Delete'
+import AddMessage from './AddMessage'
 
 export default React.createClass({
   getInitialState(){
@@ -21,16 +23,14 @@ export default React.createClass({
   },
   componentDidMount(){
     setInterval(()=> {
-      $.get(this.props.source, (resp)=> {
-        this.setState({ messages: resp})
-      })
+      this.getMessages()
     }, 2000)
   },
   handleSubmitMessage(e){
     e.preventDefault();
     var serializedForm = Serialize(this.refs.chatForm, {hash: true})
     $.post(this.props.source, serializedForm, (resp)=> {
-      this.getMessages,
+      this.getMessages(),
       this.refs.input.value= "";
     })
   },
@@ -41,22 +41,18 @@ export default React.createClass({
       method: "DELETE",
       dataType: "JSON",
       success: (resp)=> {
-        this.getMessages
+        this.getMessages()
       }
     })
   },
   render() {
     return (
       <main>
-        <section>
-          <form className="message__form" method="POST" ref="chatForm" action="#" onSubmit={this.handleSubmitMessage}>
-            <input className="message__entry" type="text" name="chat" ref="input" placeholder="type your message here"/>
-          </form>
-        </section>
+        <AddMessage handleSubmitMessage={this.handleSubmitMessage}/>
         <section>
           <ul className="message__list">{this.state.messages.map((message)=> {
               return <li key={ message._id } className="message__item" data-id={ message._id }><h3>Username</h3><p className="message__text">{message.chat}</p>
-                <i onClick={this.handleChatDelete} className="fa fa-minus-square-o"></i>
+              <Delete handleChatDelete={this.handleChatDelete}/>
                 </li>
             },this)}
           </ul>

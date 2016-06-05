@@ -24,10 +24,4 @@ describe('App js', () => {
     // assert it has text
     expect(heading.textContent).toEqual("Chat App");
   });
-
-  it('renders message entry form', ()=> {
-
-    var messageForm = TestUtils.findRenderedDOMComponentWithClass(appRendered, "message__form");
-    expect(messageForm).toBeDefined();
-  });
 });
