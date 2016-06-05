@@ -1,22 +1,27 @@
-// __tests__/CheckboxWithLabel-test.js
-'use strict';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 import App from '../modules/App';
+import Chat from '../modules/Chat';
+import $ from 'jquery';
+import Serialize from 'form-serialize';
 
 jest.unmock('../modules/App');
+jest.unmock('../modules/Chat');
 
-describe('Boilerplate', () => {
+describe('App js', () => {
+  var appRendered;
 
-  it('contains hello text', () => {
-    // This places our component into our test to find off of
-    var appRendered = TestUtils.renderIntoDocument(
+  beforeEach(()=>{
+    appRendered = TestUtils.renderIntoDocument(
       <App/>
-    )
+    );
+  })
+
+  it('contains chat app heading', () => {
     // find h1 on page
     var heading = TestUtils.findRenderedDOMComponentWithClass(appRendered, "heading");
     // assert it has text
-    expect(heading.textContent).toEqual("Hello!");
+    expect(heading.textContent).toEqual("Chat App");
   });
 });
