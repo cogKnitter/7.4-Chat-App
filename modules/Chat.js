@@ -1,7 +1,6 @@
 import React from 'react'
 import $ from 'jquery'
 import ReactDOM from 'react-dom'
-import Serialize from 'form-serialize'
 import Delete from './Delete'
 import AddMessage from './AddMessage'
 
@@ -26,14 +25,6 @@ export default React.createClass({
       this.getMessages()
     }, 2000)
   },
-  handleSubmitMessage(e){
-    e.preventDefault();
-    var serializedForm = Serialize(this.refs.chatForm, {hash: true})
-    $.post(this.props.source, serializedForm, (resp)=> {
-      this.getMessages(),
-      this.refs.input.value= "";
-    })
-  },
   handleChatDelete(e){
     var chatId = ReactDOM.findDOMNode(e.target).parentNode.dataset.id;
     $.ajax({
@@ -48,7 +39,7 @@ export default React.createClass({
   render() {
     return (
       <main>
-        <AddMessage handleSubmitMessage={this.handleSubmitMessage}/>
+        <AddMessage getMessages={this.getMessages}/>
         <section>
           <ul className="message__list">{this.state.messages.map((message)=> {
               return <li key={ message._id } className="message__item" data-id={ message._id }><h3>Username</h3><p className="message__text">{message.chat}</p>
