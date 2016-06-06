@@ -10,7 +10,7 @@ export default React.createClass({
   },
   getDefaultProps(){
     return {
-      source:"http://tiny-tiny.herokuapp.com/collections/mariah_chat"
+      source:"https://tiny-tiny.herokuapp.com/collections/mariah_chat"
     }
   },
   handleSubmitMessage(e){

@@ -11,6 +11,7 @@ jest.unmock('../modules/Chat');
 jest.unmock('../modules/AddMessage')
 jest.unmock('../modules/Delete')
 
+
 describe('Chat', () => {
   var chatRendered;
 
@@ -28,5 +29,9 @@ describe('Chat', () => {
   it ('renders delete button', ()=> {
     var deleteButton = TestUtils.scryRenderedDOMComponentsWithClass(chatRendered, "delete__chat");
     expect(deleteButton).toBeDefined();
+  });
+  it ('renders messages', ()=> {
+    var messages = TestUtils.scryRenderedDOMComponentsWithClass(chatRendered, "message__item");
+    expect(messages).toBeDefined();
   });
 });
