@@ -111,6 +111,32 @@ body {
   position: absolute;
   right: 17%; }
 
+.user__form {
+  width: 80%;
+  margin: 0 auto;
+  height: 3rem; }
+
+.user__entry {
+  font-size: 1.4rem;
+  width: 30%;
+  margin: 0;
+  height: 100%;
+  border-radius: 3px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border: 2px solid #aaaaaa;
+  position: relative; }
+
+.user__entry--submit {
+  display: inline-block;
+  height: 100%;
+  vertical-align: top;
+  width: 10%;
+  border: 2px solid #aaaaaa;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  position: relative; }
+
 /*!
  *  Font Awesome 4.6.3 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)

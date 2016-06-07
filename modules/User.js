@@ -32,9 +32,9 @@ export default React.createClass({
   render(){
     return (
       <section>
-        <form method="POST" action="#" onSubmit={this.onHandleAddUser} ref="add--user">
-          <input className="form__user" type="text" name="username" placeholder="please choose a username"/>
-          <input type="submit" value="Start Chatting"/>
+        <form className="user__form" method="POST" action="#" onSubmit={this.onHandleAddUser} ref="add--user">
+          <input className="user__entry" type="text" name="username" placeholder="please choose a username"/>
+          <input className="user__entry--submit" type="submit" value="Start Chatting"/>
         </form>
       </section>
     )

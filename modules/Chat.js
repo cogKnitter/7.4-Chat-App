@@ -39,6 +39,7 @@ export default React.createClass({
   render() {
     return (
       <main>
+        <h1 className="heading">Chat App</h1>
         <AddMessage getMessages={this.getMessages}/>
         <section>
           <ul className="message__list">{this.state.messages.map((message)=> {
