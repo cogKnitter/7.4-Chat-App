@@ -7,28 +7,48 @@ import AddMessage from './AddMessage'
 export default React.createClass({
   getInitialState(){
     return {
-      messages: []
+      username: '',
+      messages: [],
+      users: []
     }
   },
   getDefaultProps(){
     return {
-      source:"https://tiny-tiny.herokuapp.com/collections/mariah_chat"
+      messageSource:"https://tiny-tiny.herokuapp.com/collections/mariah_chat",
+      userSource: "https://tiny-tiny.herokuapp.com/collections/mariah_chat_users"
     }
   },
   getMessages(){
-    $.get(this.props.source, (resp)=> {
-      this.setState({ messages: resp})
+    $.get({
+      url: this.props.messageSource,
+      success: this.onSuccessfulGetMessages
+    })
+  },
+  getCurrentUserName(){
+    $.get({
+      url: `${this.props.userSource}/${this.props.params._id}`,
+      success: this.onSuccessfulGetCurrentUserName
+    });
+  },
+  onSuccessfulGetMessages(resp){
+    this.setState({
+      messages: resp
+    })
+  },
+  onSuccessfulGetCurrentUserName(resp){
+    this.setState({
+      username: resp.username
     })
   },
   componentDidMount(){
     setInterval(()=> {
-      this.getMessages()
+      this.getMessages();
     }, 2000)
   },
   handleChatDelete(e){
     var chatId = ReactDOM.findDOMNode(e.target).parentNode.dataset.id;
     $.ajax({
-      url: `${this.props.source}/${chatId}`,
+      url: `${this.props.messageSource}/${chatId}`,
       method: "DELETE",
       dataType: "JSON",
       success: (resp)=> {
@@ -40,10 +60,10 @@ export default React.createClass({
     return (
       <main>
         <h1 className="heading">Chat App</h1>
-        <AddMessage getMessages={this.getMessages}/>
+        <AddMessage getMessages={this.getMessages} getCurrentUserName={this.getCurrentUserName}/>
         <section>
           <ul className="message__list">{this.state.messages.map((message)=> {
-              return <li key={ message._id } className="message__item" data-id={ message._id }><h3>Username</h3><p className="message__text">{message.chat}</p>
+              return <li key={ message._id } className="message__item" data-id={ message._id }><h3>{message.username}</h3><p className="message__text">{message.chat}</p>
               <Delete handleChatDelete={this.handleChatDelete}/>
                 </li>
             },this)}
