@@ -37,10 +37,12 @@ export default React.createClass({
   },
   onSuccessfulGetCurrentUserName(resp){
     this.setState({
-      username: resp.username
+      username: resp.username,
+      userId: resp._id
     })
   },
   componentDidMount(){
+    this.getCurrentUserName();
     setInterval(()=> {
       this.getMessages();
     }, 2000)
@@ -60,7 +62,7 @@ export default React.createClass({
     return (
       <main>
         <h1 className="heading">Chat App</h1>
-        <AddMessage getMessages={this.getMessages} getCurrentUserName={this.getCurrentUserName}/>
+        <AddMessage getMessages={this.getMessages} hasUsername={this.state.username} hasUserId={this.state.userId}/>
         <section>
           <ul className="message__list">{this.state.messages.map((message)=> {
               return <li key={ message._id } className="message__item" data-id={ message._id }><h3>{message.username}</h3><p className="message__text">{message.chat}</p>
