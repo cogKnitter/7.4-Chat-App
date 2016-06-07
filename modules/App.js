@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Chat from './Chat'
+import User from './User'
 
 export default React.createClass({
   render() {
@@ -8,7 +8,7 @@ export default React.createClass({
       <main>
         <section>
           <h1 className="heading">Chat App</h1>
-          <Chat/>
+          <User/>
         </section>
       </main>
     )
